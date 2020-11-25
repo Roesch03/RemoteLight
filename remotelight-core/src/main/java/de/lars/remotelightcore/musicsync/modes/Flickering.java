@@ -9,7 +9,7 @@ public class Flickering extends MusicEffect {
 	
 	double avgLoudnes =0;
 	double counter =0;
-	double counterA =0;
+	double actLaut =0;
 	double avgAmplitudes=1;
 	int avgAmplitudesIndex;
 	double avgCounterAmplitudes=0;
@@ -36,17 +36,15 @@ public class Flickering extends MusicEffect {
 	
 		counter++;
 		for(int i = 0; i < amplitudes.length; i++) {
-			counterA+=amplitudes[i];
+			actLaut+=amplitudes[i];
 			avgCounterAmplitudes += i*amplitudes[i];
 			
 		}
-		System.out.println(avgCounterAmplitudes);
 		
-		avgAmplitudes=(avgAmplitudes+(avgCounterAmplitudes/counterA))/(2);
+		avgAmplitudes=(avgAmplitudes+(avgCounterAmplitudes/actLaut))/(2);
 		avgLoudnes = (getVolume() + counter * avgLoudnes)/(counter+1);
 
-		System.out.print(avgAmplitudes + " \t | ");
-		System.out.println(counter + " \t " + avgLoudnes);
+		System.out.print(avgAmplitudes + " \t | " + counter + " \t " + avgLoudnes + " \t | " + avgCounterAmplitudes + "\n");
 		super.onLoop();
 	}
 
